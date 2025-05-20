@@ -1,11 +1,11 @@
-# Jimi Platform Client
+# Onntrack Platform Client
 
-A Go client library for the Jimi tracking dashboard REST API.
+A Go client library for the Onntrack tracking dashboard REST API.
 
 ## Installation
 
 ```bash
-go get github.com/username/jimi-platform-client
+go get github.com/MaikelH/onntrackclient
 ```
 
 ## Usage
@@ -20,7 +20,7 @@ import (
     "fmt"
     "log"
 
-    jimi "github.com/username/jimi-platform-client"
+    "github.com/MaikelH/onntrackclient"
 )
 
 func main() {
@@ -50,7 +50,7 @@ import (
     "fmt"
     "log"
 
-    jimi "github.com/username/jimi-platform-client"
+    jimi "github.com/MaikelH/onntrackclient"
 )
 
 func main() {
@@ -99,7 +99,7 @@ func main() {
 
 ## Documentation
 
-For detailed documentation, see the [GoDoc](https://pkg.go.dev/github.com/username/jimi-platform-client).
+For detailed documentation, see the [GoDoc](https://pkg.go.dev/github.com/MaikelH/onntrackclient).
 
 ## License
 

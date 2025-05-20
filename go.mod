@@ -1,3 +1,3 @@
-module github.com/MaikelH/onntrack-client
+module github.com/MaikelH/onntrackclient
 
 go 1.24

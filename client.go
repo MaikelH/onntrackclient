@@ -1,4 +1,4 @@
-// Package jimi provides a client for the Jimi tracking dashboard REST API.
+// Package onntrackclient provides a client for the Onntrack tracking dashboard REST API.
 package onntrackclient
 
 import (
@@ -13,14 +13,14 @@ import (
 )
 
 const (
-	// DefaultBaseURL is the default base URL for the Jimi API.
+	// DefaultBaseURL is the default base URL for the Onntrack API.
 	DefaultBaseURL = "https://platform.onntrack.nl/v3/new/"
 
 	// DefaultTimeout is the default timeout for API requests.
 	DefaultTimeout = 30 * time.Second
 )
 
-// Client is a client for the Jimi API.
+// Client is a client for the Onntrack API.
 type Client struct {
 	// BaseURL is the base URL for API requests.
 	BaseURL *url.URL
@@ -34,7 +34,7 @@ type Client struct {
 	// Common service fields
 	common service
 
-	// Services used for communicating with different parts of the Jimi API.
+	// Services used for communicating with different parts of the Onntrack API.
 	Auth    *AuthService
 	Devices *DevicesService
 }
@@ -46,7 +46,7 @@ type service struct {
 // ClientOption is a function that configures a Client.
 type ClientOption func(*Client) error
 
-// NewClient returns a new Jimi API client.
+// NewClient returns a new Onntrack API client.
 func NewClient(apiKey string, options ...ClientOption) (*Client, error) {
 	baseURL, _ := url.Parse(DefaultBaseURL)
 

@@ -3,11 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/MaikelH/onntrackclient"
 	"log/slog"
 	"os"
 	"time"
-
-	jimi "jimi-platform-client"
 )
 
 func main() {
@@ -17,10 +16,10 @@ func main() {
 	}))
 
 	// Create a new client without an API key
-	client, err := jimi.NewClient(
+	client, err := onntrackclient.NewClient(
 		"", // No API key needed for login
-		jimi.WithBaseURL("https://platform.onntrack.nl/v3/new/"),
-		jimi.WithLogger(logger),
+		onntrackclient.WithBaseURL("https://platform.onntrack.nl/v3/new/"),
+		onntrackclient.WithLogger(logger),
 	)
 	if err != nil {
 		logger.Error("Failed to create client", slog.String("error", err.Error()))
@@ -32,15 +31,15 @@ func main() {
 	defer cancel()
 
 	// Get credentials from environment variables
-	account := os.Getenv("JIMI_ACCOUNT")
-	password := os.Getenv("JIMI_PASSWORD")
+	account := os.Getenv("ONNTRACK_ACCOUNT")
+	password := os.Getenv("ONNTRACK_PASSWORD")
 	if account == "" || password == "" {
-		logger.Error("JIMI_ACCOUNT and JIMI_PASSWORD environment variables must be set")
+		logger.Error("ONNTRACK_ACCOUNT and ONNTRACK_PASSWORD environment variables must be set")
 		os.Exit(1)
 	}
 
 	// Create login request
-	loginReq := &jimi.LoginRequest{
+	loginReq := &onntrackclient.LoginRequest{
 		Account:   account,
 		Password:  password,
 		Language:  "en",
