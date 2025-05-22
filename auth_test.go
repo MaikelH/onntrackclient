@@ -57,10 +57,7 @@ func TestAuthService_Login(t *testing.T) {
 	defer server.Close()
 
 	// Create a client that uses the test server
-	client, _ := NewClient(
-		"", // No API key needed for login
-		WithBaseURL(server.URL),
-	)
+	client, _ := NewClient(WithBaseURL(server.URL))
 
 	// Create login request
 	loginReq := &LoginRequest{

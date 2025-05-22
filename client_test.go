@@ -30,10 +30,7 @@ func TestNewClient(t *testing.T) {
 }
 
 func TestWithBaseURL(t *testing.T) {
-	client, err := NewClient(
-		"test-api-key",
-		WithBaseURL("https://custom-api.example.com"),
-	)
+	client, err := NewClient(WithBaseURL("https://custom-api.example.com"))
 	if err != nil {
 		t.Fatalf("NewClient returned unexpected error: %v", err)
 	}
@@ -45,10 +42,7 @@ func TestWithBaseURL(t *testing.T) {
 
 func TestWithLogger(t *testing.T) {
 	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
-	client, err := NewClient(
-		"test-api-key",
-		WithLogger(logger),
-	)
+	client, err := NewClient(WithLogger(logger))
 	if err != nil {
 		t.Fatalf("NewClient returned unexpected error: %v", err)
 	}
@@ -125,10 +119,7 @@ func TestClient_Do(t *testing.T) {
 	defer server.Close()
 
 	// Create a client that uses the test server
-	client, _ := NewClient(
-		"test-api-key",
-		WithBaseURL(server.URL),
-	)
+	client, _ := NewClient(WithBaseURL(server.URL))
 
 	// Make a request
 	req, _ := client.NewRequest(context.Background(), http.MethodGet, "devices", nil)
@@ -192,10 +183,7 @@ func TestDevicesService_List(t *testing.T) {
 	defer server.Close()
 
 	// Create a client that uses the test server
-	client, _ := NewClient(
-		"test-api-key",
-		WithBaseURL(server.URL),
-	)
+	client, _ := NewClient(WithBaseURL(server.URL))
 
 	// Call the List method
 	devices, resp, err := client.Devices.List(context.Background(), nil)

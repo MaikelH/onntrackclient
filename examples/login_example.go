@@ -16,11 +16,7 @@ func main() {
 	}))
 
 	// Create a new client without an API key
-	client, err := onntrackclient.NewClient(
-		"", // No API key needed for login
-		onntrackclient.WithBaseURL("https://platform.onntrack.nl/v3/new/"),
-		onntrackclient.WithLogger(logger),
-	)
+	client, err := onntrackclient.NewClient(onntrackclient.WithBaseURL("https://platform.onntrack.nl/v3/new/"), onntrackclient.WithLogger(logger))
 	if err != nil {
 		logger.Error("Failed to create client", slog.String("error", err.Error()))
 		os.Exit(1)

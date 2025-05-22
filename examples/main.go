@@ -23,11 +23,7 @@ func main() {
 	}
 
 	// Create a new client with options
-	client, err := onntrackclient.NewClient(
-		apiKey,
-		onntrackclient.WithBaseURL("https://api.jimi-platform.com"),
-		onntrackclient.WithLogger(logger),
-	)
+	client, err := onntrackclient.NewClient(onntrackclient.WithBaseURL("https://api.jimi-platform.com"), onntrackclient.WithLogger(logger))
 	if err != nil {
 		logger.Error("Failed to create client", slog.String("error", err.Error()))
 		os.Exit(1)

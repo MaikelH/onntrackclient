@@ -47,12 +47,11 @@ type service struct {
 type ClientOption func(*Client) error
 
 // NewClient returns a new Onntrack API client.
-func NewClient(apiKey string, options ...ClientOption) (*Client, error) {
+func NewClient(options ...ClientOption) (*Client, error) {
 	baseURL, _ := url.Parse(DefaultBaseURL)
 
 	c := &Client{
 		BaseURL:    baseURL,
-		APIKey:     apiKey,
 		HTTPClient: &http.Client{Timeout: DefaultTimeout},
 	}
 
@@ -87,6 +86,15 @@ func WithBaseURL(baseURL string) ClientOption {
 func WithHTTPClient(httpClient *http.Client) ClientOption {
 	return func(c *Client) error {
 		c.HTTPClient = httpClient
+		return nil
+	}
+}
+
+// WithAPIKey sets the API key for authentication.
+// The apiKey parameter is the authentication token required for API requests. This must be an JWT token.
+func WithAPIKey(apiKey string) ClientOption {
+	return func(c *Client) error {
+		c.APIKey = apiKey
 		return nil
 	}
 }
