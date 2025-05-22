@@ -21,11 +21,13 @@ type LoginRequest struct {
 
 // LoginResponse represents the response from a login request.
 type LoginResponse struct {
-	// Add fields based on the actual API response
-	Success bool   `json:"success"`
-	Token   string `json:"token"`
-	Message string `json:"message"`
-	// Add other response fields as needed
+	OK   bool `json:"ok"`
+	Data struct {
+		UpgradeTips bool   `json:"upgradeTips"`
+		Token       string `json:"token"`
+	} `json:"data"`
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
 }
 
 // Login authenticates a user with the Jimi platform.
@@ -49,8 +51,8 @@ func (s *AuthService) Login(ctx context.Context, loginReq *LoginRequest) (*Login
 	}
 
 	// If login is successful, update the client's API key with the token
-	if loginResp.Success && loginResp.Token != "" {
-		s.client.APIKey = loginResp.Token
+	if loginResp.OK && loginResp.Data.Token != "" {
+		s.client.APIKey = loginResp.Data.Token
 	}
 
 	return loginResp, resp, nil
